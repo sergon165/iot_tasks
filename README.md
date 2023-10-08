@@ -34,7 +34,7 @@ docker run sergon165/iot-task1
 Результат:
 ![](img/task1-run.png)
 
-8. Проект выгружен на Dockerhub
+8. Проект выгружен на Dockerhub.
 ```commandline
 docker push sergon165/iot-task1
 ```
