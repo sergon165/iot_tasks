@@ -6,4 +6,6 @@ ENV INFLUXDB_DB=data
 
 EXPOSE 8086
 
+VOLUME ["/var/lib/influxdb"]
+
 CMD ["influxd"]

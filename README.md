@@ -96,3 +96,18 @@ new_data:
 
 
 Из графиков видно, что программе успешно получилось подключиться к InfluxDB и записать данные.
+
+# Задание 3
+1. В *Dockerfile* добавлено создание тома.
+```dockerfile
+VOLUME ["/var/lib/influxdb"]
+```
+
+Теперь при перезапуске контейнера, данные из базы данных не стираются.
+
+2. Получен доступ к InfluxDB через Curl.
+```commandline
+curl -G http://localhost:8086/query --data-urlencode "q=show databases"
+```
+
+![curl](img/task3-curl.png)
