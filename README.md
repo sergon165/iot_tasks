@@ -165,6 +165,11 @@ volumes:
   influx_data:
 ```
 
+5. Запущен docker-compose.
+```commandline
+docker-compose up -d
+```
+
 Сайт:
 ![Сайт](img/task4-site.png)
 
