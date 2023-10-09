@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: app
+    ports:
+      - 5000:5000
+    depends_on:
+      - influx
+
+  influx:
+    image: influxdb:1.8-alpine
+    working_dir: /
+    environment:
+      INFLUXDB_DB: data
+    volumes:
+      - influx_data:/var/lib/influxdb
+    ports:
+      - 8086:8086
+    command: influxd
+
+volumes:
+  influx_data:

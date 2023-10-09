@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интерполяция временного ряда</title>
+  <!-- Подключение стилей Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Интерполяция временного ряда</h1>
+    <p>Данный сайт создан для работы интерполяции временных рядов с заданным интервалом. Загрузите CSV файл с вашим временным рядом, укажите необходимый интервал и measurement, куда будут записаны данные. Исходные данные будут записаны в (measurement)_raw, обработанные - в (measurement)_new.</p>
+    <div class="card col-md-5 mt-5 mx-auto">
+      <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="csvFile" class="form-label">CSV файл:</label>
+          <input type="file" class="form-control" id="csvFile" name="csvFile" required>
+        </div>
+
+          <div class="mb-3">
+            <label for="datetime_col" class="form-label">Номер столбца с временем:</label>
+            <input type="number" class="form-control" id="datetime_col" name="datetime_col" value=0 required>
+          </div>
+
+          <div class="mb-3">
+            <label for="data_col" class="form-label">Номер столбца с данными:</label>
+            <input type="number" class="form-control" id="data_col" name="data_col" value=1 required>
+          </div>
+
+      <div class="mb-3">
+        <label for="measurement" class="form-label">Measurement:</label>
+        <input type="text" class="form-control" id="measurement" name="measurement" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="interval" class="form-label">Интервал (в секундах):</label>
+        <input type="number" class="form-control" id="interval" name="interval" value=3600 required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Обработать данные</button>
+    </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Подключение скриптов Bootstrap JavaScript (необязательно) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

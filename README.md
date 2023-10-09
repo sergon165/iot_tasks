@@ -111,3 +111,62 @@ curl -G http://localhost:8086/query --data-urlencode "q=show databases"
 ```
 
 ![curl](img/task3-curl.png)
+
+# Задание 4
+1. В проект добавлено интернет-приложение на Flask, которое представляет из себя веб-страницу в формой и функцию обработки этой формы. Файл приложения: *app.py*.
+2. Переписан *function.py* так, чтобы его могло вызывать интернет-приложение и передавать все необходимые данные.
+3. Добавлен *Dockerfile* для интернет-приложения.
+
+*app/Dockerfile:*
+```dockerfile
+FROM python:3.12-alpine
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+```   
+
+4. Добавлен *docker-compose.yml*, в котором прописаны 2 сервиса.
+
+*docker-compose.yml:*
+```yaml
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: app
+    ports:
+      - 5000:5000
+    depends_on:
+      - influx
+
+  influx:
+    image: influxdb:1.8-alpine
+    working_dir: /
+    environment:
+      INFLUXDB_DB: data
+    volumes:
+      - influx_data:/var/lib/influxdb
+    ports:
+      - 8086:8086
+    command: influxd
+
+volumes:
+  influx_data:
+```
+
+Сайт:
+![Сайт](img/task4-site.png)
+
+## Проверка
+Проверка производилась на файле *weather.csv* для интервала 3600 секунд (1 час). Сайт работает, данные записываются.
