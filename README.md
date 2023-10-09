@@ -31,7 +31,7 @@ docker build -t sergon165/iot-task1
 ```commandline
 docker run sergon165/iot-task1
 ```
-Результат:
+**Результат:**
 ![Запуск образа](img/task1-run.png)
 
 8. Проект выгружен на **Dockerhub**.
@@ -90,10 +90,10 @@ docker run -p 8086:8086 iot-influx
     
 3. Запущен [*function.py*](project/app/function.py).
 
-raw_data:
+**raw_data:**
 ![raw_data](img/task2-raw_data.png)
 
-new_data:
+**new_data:**
 ![new_data](img/task2-new_data.png)
 
 
@@ -174,7 +174,7 @@ volumes:
 docker-compose up -d
 ```
 
-Сайт:
+**Сайт:**
 ![Сайт](img/task4-site.png)
 
 ## Проверка
@@ -231,14 +231,14 @@ Dockerfile
 - [influx](project/influx) содержит [*Dockerfile*](project/influx/Dockerfile) для **InfluxDB** (не иcпользуется, поскольку весь его функционал перенесен в [*docker-compose.yml*](project/docker-compose.yml)).
 
 ## Демонстрация
-Сайт:
+**Сайт:**
 ![Сайт](img/task4-site.png)
 
-Исходные данные:
+**Исходные данные:**
 ![test_raw](img/project-test_raw.png)
 
-Интерполяция с интервалом 3600:
+**Интерполяция с интервалом 3600:**
 ![test_new](img/project-test_new.png)
 
-Интерполяция с интервалом 1000:
+**Интерполяция с интервалом 1000:**
 ![test1_new](img/project-test1_new.png)
