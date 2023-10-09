@@ -32,9 +32,67 @@ docker build -t sergon165/iot-task1
 docker run sergon165/iot-task1
 ```
 Результат:
-![](img/task1-run.png)
+![Запуск образа](img/task1-run.png)
 
 8. Проект выгружен на Dockerhub.
 ```commandline
 docker push sergon165/iot-task1
 ```
+
+# Задание 2
+## Создание *Dockerfile* для InfluxDB
+1. Использован docker-образ influxdb:1.8-alpine.
+   
+```dockerfile
+FROM influxdb:1.8-alpine 
+```
+
+2. Указана рабочая директория.
+```dockerfile
+WORKDIR /
+```
+
+3. Указана переменная окружения для создания базы данных.
+```dockerfile
+ENV INFLUXDB_DB=data
+```
+
+4. Указан порт 8086.
+```dockerfile
+EXPOSE 8086
+```
+
+5. Задана команда, которая выполняется при старте контейнера.
+```dockerfile
+CMD ["influxd"]
+```
+
+## Сборка и запуск
+1. Произведена сборка образа.
+```commandline
+docker build -t iot-influx .
+```
+
+2. Произведен запуск образа с открытием порта.
+```commandline
+docker run -p 8086:8086 iot-influx
+```
+
+## Проверка
+1. В проект добавлен *weather.csv* (данные о температуре в Перми за сентябрь).
+2. В проект добавлен *function.py*, который:
+    1. считывает данные из *weather.csv*,
+    2. записывает их в InfluxDB (measurement "raw_data"),
+    3. делает интерполяцию с интервалом в 1 час,
+    4. записывает полученные данные в InfluxDB (measurement "new_data").
+    
+3. Запущен *function.py*.
+
+raw_data:
+![raw_data](img/task2-raw_data.png)
+
+new_data:
+![new_data](img/task2-new_data.png)
+
+
+Из графиков видно, что программе успешно получилось подключиться к InfluxDB и записать данные.
